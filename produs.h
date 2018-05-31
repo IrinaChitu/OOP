@@ -39,7 +39,7 @@ protected:
 
 public:
     Produs(){pret=0, cost=0;}
-    ~Produs(){} //cred ca trebuie eliberat doar numele
+    virtual ~Produs(){} //cred ca trebuie eliberat doar numele
     //virtual void CalcMasura()=0;
     void Set_Masura(string mas)
     {
@@ -63,11 +63,14 @@ public:
         if(masura == 0)
             return "vag";
     }
+
     static void Add_Vandut(double cantit, double price)
     {
         cantitate_vanduta += cantit;
         bani_incasati += price;
     }
+    static double Get_CantitateVanduta(){return cantitate_vanduta;}
+    static double Get_PretTotal(){return bani_incasati;}
     void Set_Cantitate(double cantit) {cantitate = cantit;}
     double Get_Cantitate() {return cantitate;}
     double Get_Pret() { return pret; }
@@ -135,6 +138,7 @@ public:
             case 1: return "calitate_1";
             case 2: return "calitate_2";
             case 3: return "calitate_3";
+            default: return "";
         }
     }
 
@@ -257,7 +261,7 @@ public:
 };
 
 
-template <class T> class Pereche
+template <class T> class Pereche //frumos ar fi fost sa fie doua tipuri de clase in template
 {
 protected:
     T brand_vin;

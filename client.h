@@ -13,7 +13,10 @@ private:
     static Client *instance;
     vector <Produs*> stoc;
     Client();
-    ~Client(){}
+    ~Client()
+    {
+        instance = NULL;
+    }
 public:
     static Client *Get_Instance()
     {
@@ -27,9 +30,16 @@ public:
     {
         stoc.push_back(ob);
     }
+    void Clear()
+    {
+        for(auto prod: stoc)
+            delete prod;
+        stoc.clear();
+        instance = NULL;
+    }
     double Get_Pret_Lista()
     {
-        double total;
+        double total=0;
         for(auto prod: stoc)
         {
             (*prod).Set_Cost();

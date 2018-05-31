@@ -10,9 +10,9 @@ using namespace std;
 ifstream fin("date.in");
 ofstream fout("date.out");
 
-//vezi cand atribui tipul unui produs in constructor ca dai cu enum
-//nu uita ca poate da cerinte vagi clientul deci sa faci constructor si fara param (eventual da-le valori din alea de nu trebuie neaparat citite
-//^i-am pus in enum vag
+///vezi cand atribui tipul unui produs in constructor ca dai cu enum
+///nu uita ca poate da cerinte vagi clientul deci sa faci constructor si fara param (eventual da-le valori din alea de nu trebuie neaparat citite
+///^i-am pus in enum vag
 
 
 
@@ -25,7 +25,8 @@ int main()
     //initializam stocul cu toate tipurile de produse, pt a fi mai usor sa cautam dupa cel mai scump obiect cand e vaga cerinta
     ///introduc manual preturile, puteau fi citite si dintr un fisier separat
     ///pt a arata cu acuratete cum functioneaza trebuiau introduse mult mai multe date, am introdus minimul necesar
-    Faina* pt = new Faina(2, "calitate_1");
+    ///si acum ca e de tip produs dupa pt merge sa fie orice fel de produs derivat vreau eu :D
+    Produs* pt = new Faina(2, "calitate_1");
     (*stoc).Ad_Elem( pt );
     pt = new Faina(4, "calitate_1");
     (*stoc).Ad_Elem( pt );
@@ -156,8 +157,12 @@ int main()
         if(raspuns == "Nu")
             ///cumparatorul nu va mai achizitiona produsele
             continue;
+        lista_de_cumparaturi->Clear();
+        fin.get();
     }
 
+    cout<<Produs::Get_CantitateVanduta()<<endl;
+    cout<<Produs::Get_PretTotal()<<endl;
 
 
 
